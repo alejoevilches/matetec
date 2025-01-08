@@ -8,6 +8,8 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { supabase } from "@/lib/createSupabaseClient";
 import { useRouter } from "next/navigation";
+import { IUser } from "@/types/user";
+import Cookies from 'js-cookie'
 
 const formSchema = z.object({
     username: z.string(),
@@ -32,6 +34,12 @@ export default function LoginForm(){
         })
     
         if (!error && data) {
+          const user: IUser = {
+            id: data?.user.id,
+            token: data?.session.access_token
+          }
+          Cookies.set('user', JSON.stringify(user))
+          console.log(Cookies.get('user'))
           router.push('/dashboard')
         } else {
           console.error(error)
@@ -63,7 +71,7 @@ export default function LoginForm(){
                         <FormItem>
                           <FormLabel>Contraseña</FormLabel>
                           <FormControl>
-                            <Input placeholder="*****" {...field} />
+                            <Input type="password" placeholder="*****" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
