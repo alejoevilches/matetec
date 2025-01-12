@@ -13,6 +13,7 @@ export async function middleware(request: NextRequest){
     }
 }
 
+//TODO: que el dashboard sin cookie vuelva al login
 export const config = {
     matcher: ['/']
 }

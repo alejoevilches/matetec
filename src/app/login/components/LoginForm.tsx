@@ -18,6 +18,7 @@ const formSchema = z.object({
 
 
 export default function LoginForm(){
+    //TODO: Que el routing se haga en otro archivo para que esto sea server-side
     const router=useRouter()
     const form = useForm<z.infer<typeof formSchema>>({
       resolver: zodResolver(formSchema),
