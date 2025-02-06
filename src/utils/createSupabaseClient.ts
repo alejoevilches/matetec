@@ -1,3 +1,4 @@
+//TODO: usar cookies en lugar de localStorage
 import {createClient} from '@supabase/supabase-js'
 
 const supabaseUrl=process.env.NEXT_SUPABASE_URL
